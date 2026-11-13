@@ -22,12 +22,44 @@ function Abrir-RideCofre($cofre, [string]$senha) {
   [Text.Encoding]::UTF8.GetString($pt) | ConvertFrom-Json
 }
 
+# Lista com setas (cima/baixo + Enter); sem console de verdade, pede o numero. Devolve o indice.
+function Escolher-RideOpcao([string]$titulo, [string[]]$opcoes) {
+  Write-Host $titulo -ForegroundColor Cyan
+  $ok = $false
+  try { $ok = -not [Console]::IsInputRedirected; [void][Console]::KeyAvailable } catch { $ok = $false }
+  if (-not $ok) {
+    for ($i = 0; $i -lt $opcoes.Count; $i++) { Write-Host "  $($i + 1)) $($opcoes[$i])" }
+    $n = 0; while ($n -lt 1 -or $n -gt $opcoes.Count) { [int]::TryParse((Read-Host 'Numero'), [ref]$n) | Out-Null }
+    return $n - 1
+  }
+  Write-Host '(setas cima/baixo, Enter escolhe)' -ForegroundColor DarkGray
+  $cur = 0; $topo = -1; $larg = [Math]::Max(20, [Console]::WindowWidth - 1)
+  $vis = [Console]::CursorVisible; [Console]::CursorVisible = $false
+  try {
+    while ($true) {
+      if ($topo -ge 0) { [Console]::SetCursorPosition(0, $topo) }
+      for ($i = 0; $i -lt $opcoes.Count; $i++) {
+        $t = "  $($opcoes[$i])"; if ($t.Length -gt $larg) { $t = $t.Substring(0, $larg) }
+        if ($i -eq $cur) { Write-Host $t.PadRight($larg) -ForegroundColor Black -BackgroundColor Cyan }
+        else { Write-Host $t.PadRight($larg) }
+      }
+      if ($topo -lt 0) { $topo = [Console]::CursorTop - $opcoes.Count }
+      $k = [Console]::ReadKey($true)
+      if ($k.Key -eq 'UpArrow') { $cur = ($cur - 1 + $opcoes.Count) % $opcoes.Count }
+      elseif ($k.Key -eq 'DownArrow') { $cur = ($cur + 1) % $opcoes.Count }
+      elseif ($k.Key -eq 'Enter') { return $cur }
+    }
+  } finally { [Console]::CursorVisible = $vis }
+}
+
 function Ler-RideUtf8([string]$p) { [IO.File]::ReadAllText($p, [Text.Encoding]::UTF8) }
 
 # Visita aberta neste PC: oferece desfazer sem pedir senha.
 if (Test-Path (Join-Path $rideEstado 'estado.json')) {
-  $r = Read-Host 'Ha uma visita aberta neste PC. [C]ontinuar ou [D]esfazer?'
-  if ($r -match '^[dD]') {
+  $r = Escolher-RideOpcao 'Ha uma visita aberta neste PC.' @(
+    'Continuar  (abrir de novo; da para instalar o que ficou de fora)',
+    'Desfazer   (remover o que a visita instalou e apagar a pasta dela)')
+  if ($r -eq 1) {
     $p = Join-Path $rideEstado 'codigo\setup\setup.ps1'
     & ([scriptblock]::Create((Ler-RideUtf8 $p))) -Desfazer -Codigo (Join-Path $rideEstado 'codigo')
     return
