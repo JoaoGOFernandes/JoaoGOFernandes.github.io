@@ -1,9 +1,9 @@
 {
     "v":  1,
     "iter":  600000,
-    "criado":  "2026-11-12",
-    "salt":  "ja8sLW4l+nBtJ9SibrLUBA==",
-    "iv":  "EyunC0Fn1F+7Ik19C/kUGQ==",
-    "ct":  "y5YLACA/3v294JEUm2Xvq532vgLAR9h8vPK1ImAVVOOhLAw+yax+OUb3G8ElLvCZ2xHzT4fZ0puP3r3jvxNqofetVG0JW7rkykqaTfLOgGyZPbJzTMkMQjj/07xTWsA/OEEQaoqeQWEbqd8I1FdzUc6pYQtqwy2O3N1iMvDzqIqO4mhKL+7eL7fZp029RV38Mn/aoNHi3OT/H2i5YrK/5UU/EovvC4Ik5TMTGeDsWpersU6nuvLwih7G6u46Q8m6WA/lgdxCfkDjMRA/LThhcS0wXLhEWxyz8Zc/dNd/3pY2bwJcnXZ8MCyxHe1QsHWMNiYK7WdHj4nUf3t1pd+ewDSgKhp1d4/a3AO2pSa+rk0o6azBYCd71ml9anVrWaWxQ3aF9+OmKfPn0J9dNWXjQ6AMiZPTad7S3PZk9UGKm/7DaoQv+NbNkM+vMp2Gt4E5rpRDWJuKlmlGz9ek3SMcxaWUtHO8/sY9yziJs5mABuCnsQZMfuFVJn83BJW27uMO",
-    "mac":  "eCyg3S7NjBReRe6JQKTX+MJVz0Aer2QJ/fBdC5lf1XI="
+    "criado":  "2026-11-18",
+    "salt":  "MixvTRujfQvl/3qWxifZTA==",
+    "iv":  "rvcgUMmn3o8CAJ3UaXKlnQ==",
+    "ct":  "EF5ySRNWqx88IVQ8KGwhelxSgOmaGqV16KpCNUKPlOhga2b01VQwn6EzduP3BkFPeHB3l0IfrdINNbWKxs0X+1KZeca9SPYuPxB30QFEdGo9ZI11KPmoO0Az/hoV8dIL0IPsi45C7JhH8YOza2dCkq1xbAkSH5KsZQOsAYe/te+2lkHKbzrZ+1QHwIIt3FfNefWvyvGVEll0CoMOYo9zuracxMli+EF06rqkel+DeCcB3Q8NZDoZQ41tQ8HTCthBIhUFIBX5nkrsgP7qyHJ1CrdX2Z/dGnRZ4B8psZAGwLhpFUln8ZcnAR2vo5vbNUHOHALYTGUWi/ZVocMILGBCVhFncGd0Er6EjBK+dnpx9pch+p26JV1eTsj92QsX0GHD7e7YdIGXoTAWQ9EaH33g81zolltb4iq0X42Mw9IVnaxG2l3qzmcNQRuNHpuIWKyoD6xt/AGCjy7GmOOuis5iew==",
+    "mac":  "K2r0829dID3YV2v3r2z1I3ecHX4dFt9C8v5ECta5BAU="
 }
